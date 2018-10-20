@@ -1,17 +1,22 @@
+import logging
 from time import sleep
 
 from cct.case import Case
 
 
+
+
+logger = logging.getLogger(__file__)
+
 class create_snapshot(Case):
 
     def pre_test(self):
-        print ('doing something before create snapshot')
+        logger.info ('doing something before create snapshot')
         sleep(3)
 
     def process(self):
-        print('create snapshot')
+        logger.info('create snapshot')
         sleep(5)
 
     def post_test(self):
-        print('create snapshot finished')
+        logger.info('create snapshot finished')

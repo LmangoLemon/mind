@@ -1,8 +1,10 @@
+import logging
 import threading
 import time
 
 from cct.common.enums import case_running_status
 
+logger = logging.getLogger(__file__)
 
 class Engine(object):
 
@@ -15,7 +17,7 @@ class Engine(object):
         for id, case in self.__testset.case_dict.items():
             t = threading.Thread(target=self.run_single_case, name=case.case_id, kwargs={'case': case})
             t.setDaemon(True)
-            print('test case ={name} will start'.format(name=case.name))
+            logger.info('test case ={name} will start'.format(name=case.name))
             t.start()
             self.__case_thread_list.append(t)
 
@@ -38,16 +40,16 @@ class Engine(object):
 
     def pause_4_depend_other_case(self, case):
         if case.dependence:
-            print('case={name} will pause to wait for other case running status'.format(name=case.name))
+            logger.info('case={name} will pause to wait for other case running status'.format(name=case.name))
             case.pause()
 
     def pause_4_depend_op_status(self, case):
         if case.dep_op_dict:
-            print('case={name} will pause to wait for other case op status'.format(name=case.name))
+            logger.info('case={name} will pause to wait for other case op status'.format(name=case.name))
             case.pause()
         else:
-            print ('case={name} will not pause={rst}'.format(name=case.name, rst=case.dep_op_dict is None))
+            logger.info ('case={name} will not pause={rst}'.format(name=case.name, rst=case.dep_op_dict is None))
 
 
 def do1():
-    print ("i am doing 1")
+    logger.info ("i am doing 1")

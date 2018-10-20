@@ -1,8 +1,10 @@
+import logging
 import threading
 import time
 
 from cct.common.enums import case_running_status
 
+logger = logging.getLogger(__file__)
 
 class Case(object):
 
@@ -53,11 +55,11 @@ class Case(object):
         return self.__name
 
     def resume(self):
-        print('case={id} is resumed'.format(id=self.name))
+        logger.info('case={id} is resumed'.format(id=self.name))
         self.__signal.set()
 
     def pause(self):
-        print('case={id} is paused'.format(id=self.name))
+        logger.info('case={id} is paused'.format(id=self.name))
         self.__signal.clear()
         self.__signal.wait()
 
@@ -66,7 +68,7 @@ class Case(object):
         return self.__case_id
 
     def pre_test(self):
-        print("do something before test")
+        logger.info("do something before test")
         time.sleep(3)
         pass
 

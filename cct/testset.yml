@@ -12,7 +12,6 @@ cases:
   - id: '3'
     name: 'start io'
     path: start_io
-
     process_at:
       id: '1'
       status: post
