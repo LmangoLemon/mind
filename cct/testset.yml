@@ -1,0 +1,22 @@
+cases:
+  - id: 1
+    name: '创建lun'
+    path: create_lun
+  - id: 2
+    name: '创建快照'
+    path: create_snapshot
+    dependence:
+      id: 1
+      status: pass
+  - id: 3
+    name: '创建lun'
+  - id: 4
+    name: '创建快照'
+  - id: 5
+    name: '创建lun'
+  - id: 6
+    name: '创建快照'
+  - id: 7
+    name: '创建lun'
+  - id: 8
+    name: '创建快照'
