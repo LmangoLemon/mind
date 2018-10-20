@@ -1,11 +1,20 @@
 cases:
-  - id: 1
-    name: '创建lun'
+  - id: '1'
+    name: 'create lun'
     path: create_lun
-  - id: 2
-    name: '创建快照'
+  - id: '2'
+    name: 'create snapshot'
     path: create_snapshot
     dependence:
-      id: 1
+      id: '1'
       status: pass
+
+  - id: '3'
+    name: 'start io'
+    path: start_io
+
+    process_at:
+      id: '1'
+      status: post
+
 

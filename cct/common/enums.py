@@ -1,3 +1,7 @@
 from enum import Enum
 
-case_status = Enum('PASS', 'FAILED')
+case_running_status = Enum('PASS', 'FAILED', 'INIT', 'RUNNING')
+
+
+case_operation_status =Enum('PRE','POST')
+

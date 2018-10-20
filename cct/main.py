@@ -1,6 +1,8 @@
 import sys
 
 import importlib as importlib
+from time import sleep
+
 import yaml
 from cct.engine import Engine
 from cct.testset import TestSet
@@ -28,12 +30,15 @@ def get_cases():
     for case in ts_data.get('cases'):
         id=case.get('id')
         name=case.get('name')
-        case_dict[case.get('id')] = get_case_instance(case.get('path'))(id,name)
+        dep=case.get('dependence')
+        process_at=case.get('process_at')
+        case_dict[case.get('id')] = get_case_instance(case.get('path'))(id,name,dep,process_at,)
     return case_dict
 
 
 if __name__ == '__main__':
     cases = get_cases()
+
     ts = TestSet(cases)
     engine = Engine(test_set=ts)
     engine.start()
